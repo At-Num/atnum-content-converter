@@ -1,0 +1,12 @@
+{
+  "name": "atnum-content-converter",
+  "outputfilename": "atnum-content-converter",
+  "frontend:install": "npm install",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "n447",
+    "email": "nigel447@gmail.com"
+  }
+}

@@ -1,0 +1,6 @@
+build/bin
+build/*.png
+build/*.md
+node_modules
+frontend/dist
+*.txt
