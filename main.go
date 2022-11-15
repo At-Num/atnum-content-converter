@@ -2,10 +2,14 @@ package main
 
 import (
 	"embed"
-
+	"fmt"
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"contentConverter/backend/transcode"
+
+	// "path/filepath"
+	// "os"
+	// "golang.org/x/sys/windows" 
 )
 
 //go:embed all:frontend/dist
@@ -13,6 +17,12 @@ import (
 var assets embed.FS
 
 func main() {
+	// homeDir, err := os.UserHomeDir()
+	// handleErr(err)
+	// inFilePath  := filepath.Join(homeDir, "AtnumStatic", "ffmpeg.exe")
+	// mod, err  := windows.LoadDLL(inFilePath)
+	// fmt.Printf("%#v\n", mod)
+	// handleErr(err)
 	gicon, _ := assets.ReadFile("icon.jpeg")
 	// Create an instance of the app structure
 	services := &transcode.Services{}
@@ -33,5 +43,12 @@ func main() {
 
 	if err != nil {
 		println("Error:", err.Error())
+	}
+}
+
+
+func handleErr(err error) {
+	if err != nil {
+		fmt.Printf("%s\n", err)
 	}
 }

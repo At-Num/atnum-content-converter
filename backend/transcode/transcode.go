@@ -2,11 +2,11 @@ package transcode
 
 import (
 	"os"
+	"os/exec"
 	"fmt"
 	"path/filepath"
 	"strings"
 	"sync"
-	ffmpeg "github.com/u2takey/ffmpeg-go"
 )
 
 func (cli *Services) Debug( mssg string) {
@@ -21,19 +21,26 @@ func (cli *Services) TranscodeAVIToMp4( fileName string) string {
 	homeDir, err := os.UserHomeDir()
 	handleErr(err)
 	inFilePath  := filepath.Join(homeDir, "AtnumStatic", fileName)
-	fmt.Println(inFilePath)
+	fmt.Println("in path ", inFilePath)
  
 	outFilePath := strings.TrimSuffix(fileName, filepath.Ext(fileName))
 	outFilePath = fmt.Sprintf("%s.%s",outFilePath, "mp4")
-	if chekIfMp4FileExists(outFilePath) {
+	outFile  := filepath.Join(homeDir, "AtnumStatic", outFilePath)
+	fmt.Println("out path ", outFile)
+	if chekIfMp4FileExists(outFile) {
+		fmt.Println("out path exists" )
 		return "exists"
 	}
+ 
+	exePath  := filepath.Join(homeDir, "AtnumStatic", "bin", "ffmpeg.exe")
+	cmd := exec.Command( exePath,  `-i`, inFilePath, `-c:v`, `libx265`, outFile )
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+
     go func() {
 		defer wg.Done()
-		err = ffmpeg.Input(inFilePath).
-		Output(filepath.Join(homeDir, "AtnumStatic", outFilePath), ffmpeg.KwArgs{
-			"format": "mp4",
-		}).Run()
+		err = cmd.Start()
+		handleErr(err)
 		if err == nil {
 			ret = "true"
 		}

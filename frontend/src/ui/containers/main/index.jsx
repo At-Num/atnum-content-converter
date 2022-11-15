@@ -56,7 +56,7 @@ const MainView = ({ debug } = props) => {
                 case 'exists':
                     // error condition
                     setIsLoading(false)
-                    transCodeError('exists')
+                    setTransCodeError('exists')
                     break;
                 case 'false':
                     // error condition
@@ -150,8 +150,8 @@ const MainView = ({ debug } = props) => {
 
     const renderView = () => {
         switch (transCodeError) {
-            case 'exists': return renderErrorView(true)
-            case 'false': return renderErrorView(false)
+            case 'exists': return renderErrorView(false)
+            case 'false': return renderErrorView(true)
             default: return renderMainView()
         }
     }
