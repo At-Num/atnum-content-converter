@@ -4,3 +4,4 @@ build/*.md
 node_modules
 frontend/dist
 *.txt
+deploy
