@@ -7,4 +7,5 @@ frontend/dist
 *.exe
 *.log
 !LOG!
+deploy
 

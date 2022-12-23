@@ -31,7 +31,6 @@ func (cli *Services) TranscodeAVIToMp4( fileName string) string {
 		fmt.Println("out path exists" )
 		return "exists"
 	}
- 
 	exePath  := filepath.Join(homeDir, "AtnumStatic", "bin", "ffmpeg.exe")
 	cmd := exec.Command( exePath,  `-i`, inFilePath, `-c:v`, `libx265`, outFile )
 	cmd.Stdout = os.Stdout
@@ -46,10 +45,10 @@ func (cli *Services) TranscodeAVIToMp4( fileName string) string {
 		}
  
 	}()
+
 	wg.Wait()
 	fmt.Println("completes")
     return ret
- 
 }
 
 func chekIfMp4FileExists(filename string) bool {

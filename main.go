@@ -39,6 +39,7 @@ func main() {
 		Bind: []interface{}{
 			services,
 		},
+		LogLevel: 1 ,
 	})
 
 	if err != nil {
