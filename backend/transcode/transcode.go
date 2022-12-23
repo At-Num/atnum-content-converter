@@ -25,7 +25,6 @@ func (cli *Services) TranscodeAVIToMp4( fileName string) string {
  
 	outFilePath := strings.TrimSuffix(fileName, filepath.Ext(fileName))
 	outFilePath = fmt.Sprintf("%s.%s",outFilePath, "mp4")
-	outFilePath = fmt.Sprintf("%s.%s",outFilePath, "mp4")
 	outFile  := filepath.Join(homeDir, "AtnumStatic", outFilePath)
 	fmt.Println("out path ", outFile)
 	

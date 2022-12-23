@@ -11,6 +11,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider';
 import { WaveSpinner } from "react-spinners-kit";
+import { DropArea } from '../../components/droparea'
 
 
 // https://www.pluralsight.com/guides/how-to-use-a-simple-form-submit-with-files-in-react
@@ -34,6 +35,7 @@ const MainView = ({ debug } = props) => {
     const [logo, setLogo] = useState('')
     const [isLoading, setIsLoading] = useState(false)
     const [transCodeError, setTransCodeError] = useState('run')
+
 
     useEffect(() => {
 
@@ -107,7 +109,7 @@ const MainView = ({ debug } = props) => {
     }
 
     const renderMainView = () => {
-
+        // 
         return (
             <>
                 <Stack direction="row" spacing={4} divider={<Divider orientation="vertical" flexItem />}
@@ -131,14 +133,9 @@ const MainView = ({ debug } = props) => {
                             sx={{ mt: 4 }} variant="contained"
                             onClick={(e) => onTranscode(e)}
                         >Convert </Button></Grid>  <Grid item xs={4}></Grid>
-                    <Grid item xs={4}></Grid>
-                    <Grid item xs={4}>  <input
-                        type="file"
-                        onChange={(e) => {
-                            setSelectedFile(e.target.files[0].name)
-                            isSelected(true)
-                        }}
-                    /></Grid><Grid item xs={4}></Grid>
+                    <Grid item xs={1}></Grid>
+                    <DropArea setFile ={setSelectedFile} isSelected = {isSelected} /> 
+                    <Grid item xs={1}></Grid>
                     <Grid item xs={12}></Grid>
                     <Grid item xs={12}></Grid>
                 </Grid>
